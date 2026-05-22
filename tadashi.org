@@ -90,19 +90,26 @@
 [[file:sakana-ai.jpg]]
 
 ** All you need is to sample the set of correct transformations
-*** xTODO Not writing, but rewriting
-- 
 *** Our view
-- ML codegen is *transformations on a reference implementation*
+- ML codegen should *transform a reference implementation* (not writing, but rewriting code)
 - ML can *explore the space of transformations* to find a faster version
-- But we also need *correctness*
-  # - Transformation is allowed \rightarrow perform the transformation
-*** xTODO Hotspots
-*** xTODO How it was done before
+- Tadashi: a library to *expose this search space* also ensuring *correctness*
+
+** What Tadashi can do for you?
+Assuming you want to use ML to optimise HPC/science codes, with hotspots in nested loops. *And assuming you don't trust LLMs blindly.*
+*** Before Tadashi you could:
+1. rewrite your code manually (e.g. tile a loop) and have ML find search for params (not composable)
+2. rewrite it to some DSL and which supports transformations and interface Python/ML with that DSL
+3. call Pluto/PPCG (other "scary tool") and interface Python/ML with it
+*** With Tadashi you have out-of-the-box support to
+1. query available transformations,
+2. execute/compose transformations,
+3. check legality/correctness of transformations
+4. generate, compile and measure transformed code
 ** Loop Transformations
 [[file:./figs/transformations2.tikz.pdf]]
 
-* ~pip install git+https://github.com/vatai/tadashi.git~
+* ~pip install tadashi~
 ** TADASHI: *loop transformations* with correctness check
 :PROPERTIES:
 :name: overview
