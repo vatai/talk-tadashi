@@ -116,24 +116,18 @@ Assuming you want to use ML to optimise HPC/science codes, with hotspots in nest
 :END:
 [[./figs/sampling.pdf]]
 ** End-to-end example (bootstrapping for ML dev)
-#+begin_src python
-  from pathlib import Path
+#+begin_src python :tangle /tmp/short.py
   from random import choice, seed
-  import tadashi
   from tadashi.apps import Simple
-  seed(1234)
-  dir_path = Path(__file__).parent
-  examples_path = dir_path if dir_path.name == "examples" else "examples"
-  app = Simple(f"{examples_path}/inputs/depnodep.c")
+  seed(42)
+  app = Simple(f"/home/vatai/code/tadashi/examples/inputs/depnodep.c")
   node = app.scops[0].schedule_tree[1]
   tr = choice(node.available_transformations)
   args = choice(node.get_args(tr, -10, 10))
-  legal = node.transform(tr, *args)
-  app.compile()
-  transformed_app = app.generate_code()
-  transformed_app.compile()
-  print(f"{app.measure()=}")
-  print(f"{transformed_app.measure()=}")
+  node.transform(tr, *args)
+  print(f"{app.legal=}")
+  tapp = app.generate_code()
+  print(f"speedup= {app.measure()/tapp.measure()}x")
 #+end_src
 ** Managing states
 :PROPERTIES:
