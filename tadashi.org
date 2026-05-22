@@ -1,6 +1,6 @@
 #+startup: beamer
 #+include: preamble.org
-#+options: h:2 ':t
+#+options: H:2 ':t
 #+reveal_hlevel: 2
 #+latex_compiler: xelatex
 #+latex_class_options: [presentation, aspectratio=169]
@@ -24,7 +24,7 @@
 #+title: TADASHI: A Library for Legal Code Transformation in AI Tool\-chains Automated Code Generation with Guaranteed Correctness
 #+date: Riken R-CCS, High Performance Artificial Intelligence Systems Research Team, Japan
 #+author: *E. Vatai*, A. Drozd, I. R. Ivanov, J. E. Batista, Y. Ren, M. Wahib
-#+bibliography: ~/overleaf/tadashi-paper/main.bib
+#+bibliography: ~/overleaf/paper/sc26-tadashi/references.bib
 
 * Intro
 ** The Team
@@ -87,7 +87,7 @@
 
 **** Some people don't even do that
 #+attr_latex: :width 0.5\textwidth
-[[file:sakana-ai.jpg]]
+[[file:figs/sakana-ai.jpg]]
 
 ** All you need is to sample the set of correct transformations
 *** Our view
@@ -393,8 +393,6 @@ for(int i = 0; i < N; i++)
   {\includegraphics[width=0.48\linewidth]{figs/schedule-i-mj}}
   \label{fig:schedules}
 \end{figure}
-**** COMMENT Examples
-[[./figs/4schedules.png]]
 *** Graph column
 :PROPERTIES:
 :beamer_col: 0.52
@@ -456,44 +454,8 @@ for(int i = 0; i < N; i++)
 Expected:
    - Less retraining
    - Better exploration \Rightarrow better results for a given kernel
+
 ** COMMENT Status quo
-*** Not an average AI talk
-
-[[./figs/disclaimer.jpg]]
-
-#+attr_latex: :options basicstyle=\Huge\ttfamily
-#+begin_center
-*NOT* "enabled by AI"
-
-"Enabling AI" = No AI here (yet!)
-
-#+end_center
-
-*** Why is this important?
-:PROPERTIES:
-:beamer_env: ignoreheading
-:END:
-**** Left column
-:PROPERTIES:
-:beamer_col: 0.45
-:beamer_opt: t
-:END:
-
-***** AI hallucinations
-- We can all [[./figs/hands.png][agree]] AI's [[file:./figs/granny.png][hallucinate]]!
-
-- Suggested solution?
-  - "Treat them like any other (not entirely trustworthy) human!"
-
-**** Right column
-:PROPERTIES:
-:beamer_col: 0.45
-:beamer_opt: t
-:END:
-
-***** XKCD said it best
-#+attr_latex: :width 5cm
-[[./figs/xkcd_com_1838.png]]
 
 *** What about code?
 
@@ -512,8 +474,6 @@ Expected:
 
 - Performance portability is extremely important
 - More than necessary (PhD-level) work-hours wasted!
-  [[./figs/ecp-logo.png]]
-  [[./figs/fugaku.jpeg]]
 
 *** How is it relevant?
 **** Left
