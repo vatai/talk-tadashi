@@ -1,0 +1,54 @@
+#+latex_header: \graphicspath{{~/Sync/resources/riken},{figs}}
+
+#+latex_header: \usepackage{xeCJK}
+#+latex_header: \setCJKmainfont{IPAMincho}
+#+latex_header: \setCJKsansfont{IPAGothic}
+#+latex_header: \setCJKmonofont{IPAGothic}
+
+# # #+latex_header: \usepackage{concmath}
+# # #+latex_header: \usefonttheme{serif}
+# #+latex_header: \usepackage[OT1]{fontenc}
+# #+latex_header: \usefonttheme{structurebold}
+
+#+latex_header: \usepackage{arev}
+#+latex_header: \usefonttheme{professionalfonts}
+
+#+latex_header: \usepackage[normalem]{ulem}
+#+latex_header: \usepackage[dvipsnames]{xcolor}
+#+latex_header: \usepackage{tikz}
+#+latex_header: \usepackage{marvosym}
+#+latex_header: \usepackage[marvosym]{tikzsymbols}
+#+latex_header: \usetikzlibrary{arrows, matrix, arrows.meta, shapes, shapes.arrows, shapes.multipart, shapes.symbols, fadings, fit, positioning, decorations.pathreplacing, angles, quotes}
+#
+#
+#+latex_header: \usepackage{ifdraft}
+#+latex_header: \ifdraft{}{
+#+latex_header: \tikzfading[name=fade up, top color=transparent!100, bottom color=transparent!0]
+#+latex_header: \tikzfading[name=fade right, right color=transparent!70, left color=transparent!0]
+#+latex_header: \tikzfading[name=fade left, right color=transparent!0, left color=transparent!100]
+#
+#+latex_header: \setbeamertemplate{title page}[default][colsep=-4bp,rounded=true,shadow=true]
+#+latex_header: \definecolor{rikenblue} {HTML}{6ed0fe}
+#
+#+latex_header: \addtobeamertemplate{background}{\begin{tikzpicture}[remember picture,overlay]
+#
+#+latex_header: \node[rectangle, fill=rikenblue, path fading=fade up, anchor=south, minimum width=\paperwidth, minimum height=1.0cm] (box) at (current page.south){};
+#+latex_header: \fill[white, rounded corners, xshift=-1cm, yshift=1cm, path fading=fade left] (current page.south east) ++ (-2mm, 2mm) rectangle ++ (-5cm, 1cm) {};
+#+latex_header: \path (current page.south east) ++ (-2mm, 2mm) node[anchor=south east](fugaku) {\includegraphics[height=0.8cm]{presentation/fugaku-logo}};
+#+latex_header: \path (current page.south east) ++ (-24mm, 2mm) node[anchor=south east] {\includegraphics[height=0.8cm]{presentation/rccs-logo}};
+#+latex_header: \end{tikzpicture}}{}
+#
+#+latex_header: \addtobeamertemplate{title page}{\begin{tikzpicture}[remember picture,overlay]
+#+latex_header: \node[above right, inner sep=0pt, anchor=north east] at (current page.north east) {\includegraphics[width=0.7\paperwidth]{presentation/half-fugaku-bg}};
+#+latex_header: \node[rectangle, fill=white, path fading=fade right, minimum width=0.6\paperwidth, minimum height=1.5cm] (box) at (10cm,-1.6cm){};
+#+latex_header: \node[rectangle, fill=white, path fading=fade right, minimum width=0.6\paperwidth, minimum height=0.7cm] (box) at (10cm,-3.2cm){};
+#+latex_header: \node[above right,inner sep=0pt](wave) at (current page.south west) {\includegraphics[scale=0.7]{presentation/wave1}};
+#+latex_header: \node[above right,inner sep=0pt](wave) at (wave.south east) {\includegraphics[scale=0.5]{presentation/wave2}};
+#+latex_header: \end{tikzpicture}}{}
+#+latex_header: } %ifdraft
+#
+#
+#+latex_header: \setbeamercolor*{title}{use=structure}
+# #+latex_header: \setbeamercolor*{author}{use=structure,fg=white}
+# #+latex_header: \setbeamercolor*{date}{use=structure,fg=white}
+#+latex_header: \setbeamercolor{math text}{fg=structure.fg}
