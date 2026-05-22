@@ -1,0 +1,15 @@
+  %%{init: { 'themeCSS': '.actor { font-size: 22px !important; } .messageText { font-size: 20px !important; }' }}%%
+  sequenceDiagram
+    participant A as App(clang)
+    box LightBlue Polly Translator
+    participant P as LLVM (Polly)
+    participant I as ISL
+    participant L as LLVM (Polly)
+    end
+    participant N as New app
+    A->>P: source.c
+    P->>I: jscop
+    rect rgb(200, 150, 255)
+    I->>L: sched
+    end
+    L->>N: new sched

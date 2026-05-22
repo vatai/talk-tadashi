@@ -137,7 +137,7 @@ Assuming you want to use ML to optimise HPC/science codes, with hotspots in nest
 #+attr_latex: :width 0.7\textwidth
 [[file:./figs/tadashi-usage.pdf]]
 
-** Benchmarking harness
+** ~app.transform_measure_mpi(trs_list, self.executor)~
 *** Left column
 :PROPERTIES:
 :beamer_col: 0.48
@@ -145,11 +145,11 @@ Assuming you want to use ML to optimise HPC/science codes, with hotspots in nest
 The *compiler* spends a *few minutes optimising the code on a single
 node*. Why not use *the entire supercomputer?*
 
-- Benchmarking harness
-  - Distribute compiling and running of benchmarks
-  - Collect the speedups to remote nodes
-  - Uses ~MPI4py~, and exposed to the user as ~concurrent.futures~ (from
-    the Python standard)
+Benchmarking harness
+- Distribute compiling and running of benchmarks
+- Gather the speedups
+- Uses ~MPI4py~, and exposed to the user as ~concurrent.futures~ (from the
+  Python standard)
 *** Right column
 :PROPERTIES:
 :beamer_col: 0.48
@@ -186,6 +186,45 @@ node*. Why not use *the entire supercomputer?*
 \end{tikzpicture}
 #+end_export
 #+end_center
+** Two Backends: PET and Polly
+*** Left column
+:PROPERTIES:
+:beamer_col: 0.6
+:END:
+\includegraphics[width=\textwidth]{./figs/translator-pet.mmd.pdf}
+\includegraphics[width=\textwidth]{./figs/translator-polly.mmd.pdf}
+
+*** Right column
+:PROPERTIES:
+:beamer_col: 0.4
+:END:
+
+#+begin_example
+  clang -O0 -Xclang -disable-O0-optnone \
+    -c -emit-llvm src.c -o src.O0.bc
+  opt -polly-canonicalize \
+    src.O0.bc -o=src.pre_polly.bc
+  opt -aa-pipeline=basic-aa \
+    -polly-codegen src.pre_polly.bc \
+    -polly-export-jscop -o=/dev/null
+  # ISL/Tadashi
+  opt -aa-pipeline=basic-aa \
+    -polly-codegen src.pre_polly.bc \
+    -polly-import-jscop -o=/dev/null
+  opt -O3 src.post_polly.bc -o=src.bc
+  llc -O3 -relocation-model=pic --filetype=obj \
+    src.bc -o=tsrc.o
+#+end_example
+
+** WIP Roadmap
+- More ML!
+- Better polyhedral extraction
+  - MLIR
+  - Linearization for PET
+  - beyond polyhedral
+- Better codegen
+  - MLIR
+  - CUDA support
 * The Long Term Vision
 ** Grand vision
 *** Large scale optimisation framework
@@ -324,16 +363,7 @@ def train_model(app, num_iter=3, net=Model()):
     t = app.measure()
     # net.update(loop_idx, tr, args, legal, t)
 #+end_src
-** Future Works: Fortran
-*** Current backend: PET+ISL
-[[file:./figs/tadashi.png]]
-** Future Works: Fortran
-*** WIP backend: LLVM+ISL
-[[file:./figs/tadashi-llvm.png]]
-** TODO Roadmap
-- codegen
-- ml
-- beyond polyhedral
+
 ** That's all folks!
 - i. https://vatai.github.io/
 - ii. https://github.com/vatai/tadashi/

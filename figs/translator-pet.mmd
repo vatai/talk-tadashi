@@ -1,0 +1,17 @@
+%%{init: { 'themeCSS': '.actor { font-size: 22px !important; } .messageText { font-size: 20px !important; }' }}%%
+sequenceDiagram
+  participant A as App
+  box Pink Pet Translator
+  participant P as PET
+  participant I as ISL
+  participant L as Legality check
+  end
+  participant N as New app
+
+  A->>P: source.c
+  rect rgb(200, 150, 255)
+  P->>I: dom, deps, sched
+  I->>L: dom, deps, sched
+  end
+  A->>N: source
+  L->>N: new sched
