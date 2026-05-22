@@ -217,6 +217,7 @@ Benchmarking harness
 #+end_example
 
 ** WIP Roadmap
+- Expose tadashi through MCP to agents
 - More ML!
 - Better polyhedral extraction
   - MLIR
